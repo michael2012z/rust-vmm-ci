@@ -66,7 +66,8 @@ def _get_current_coverage(coverage_config):
     if crate_features:
         additional_kcov_param += '--features=' + crate_features
 
-    kcov_cmd = "CARGO_TARGET_DIR={} cargo kcov {} --all " \
+    kcov_cmd = "RUSTFLAGS=\"-C link-arg=-lgcc\" CARGO_TARGET_DIR={} cargo kcov {} --all " \
+               "--target aarch64-unknown-linux-musl " \
                "--output {} -- " \
                "--exclude-region={} " \
                "--exclude-pattern={} " \
